@@ -1,21 +1,19 @@
-package br.com.pagseguro.vaga.encurtadorurl.model;
+package br.com.pagseguro.vaga.urlshortener.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "endereco")
-public class Endereco {
+public class Address {
 	
-	private static final String HTTP_PROTOCOL = "http://";
 	@Id
 	String id;	
 	String url;
 	
-	public Endereco() {}
+	public Address() {}
 	
-	public Endereco(String url) {
-		if(url.contains("://")) this.url = url;
-		else this.url = HTTP_PROTOCOL + url;
+	public Address(String url) {
+		this.url = url;
 	}
 	public String getId() {
 		return id;

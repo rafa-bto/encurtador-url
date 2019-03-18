@@ -1,4 +1,4 @@
-package br.com.pagseguro.vaga.encurtadorurl.controller;
+package br.com.pagseguro.vaga.urlshortener.controller;
 
 import java.io.IOException;
 
@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import br.com.pagseguro.vaga.encurtadorurl.DTO.EnderecoDTO;
-import br.com.pagseguro.vaga.encurtadorurl.service.UrlService;
+import br.com.pagseguro.vaga.urlshortener.controller.DTO.AddressDto;
+import br.com.pagseguro.vaga.urlshortener.domain.service.UrlService;
 
 @RestController
-public class EncurtadorUrlController {
+public class UrlShortenerController {
 	
 	@Autowired
 	UrlService urlService;
 	
 	@PostMapping(value = "/url")
-	public String geraUrl(@RequestBody @Valid EnderecoDTO endereco, HttpServletRequest request){
-		return request.getRequestURL() + "/" + urlService.geraUrlHash(endereco);
+	public String postUrl(@RequestBody @Valid AddressDto adress, HttpServletRequest request){
+		return request.getRequestURL() + "/" + urlService.saveAddress(adress);
 	}
 	
 	@GetMapping(value = "/url/{id}")
-	public RedirectView buscaUrl(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {
-		String url = urlService.buscaUrl(id);
+	public RedirectView getUrl(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {
+		String url = urlService.getUrl(id);
 		if(url != null)
 			return new RedirectView(url);
 		else

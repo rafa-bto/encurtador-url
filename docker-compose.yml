@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    restart: always
+    container_name: app
+    build: .
+    command: ["java", "-jar", "/app.jar"]
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=pagseguro-vaga
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:3.6
