@@ -28,7 +28,8 @@ para validar a URL basta acessa-lá, que a aplicação efetuará o redirecioname
 
 ## Softwares utilizados
 
-* [SpringBoot](hhttps://spring.io/projects/spring-boot/)
+
+* [SpringBoot](https://spring.io/projects/spring-boot/)
 * [Maven](https://maven.apache.org/)
 * [MongoDB](https://docs.mongodb.com/manual/introduction/)
 
