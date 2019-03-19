@@ -37,8 +37,7 @@ public class Address {
 		this.hitCount = hitCount;
 	}
 	
-	public Address incrementHit() {
+	public void incrementHit() {
 		this.hitCount++;
-		return this;
 	}
 }

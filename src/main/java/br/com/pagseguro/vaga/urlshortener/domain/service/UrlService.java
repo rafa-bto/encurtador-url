@@ -21,9 +21,11 @@ public class UrlService {
 
 	public String getUrl(String id) {
 		Optional<Address> optAddress = addressRepository.findById(id);
+		
 		if(optAddress.isPresent()) {
-			addressRepository.save(optAddress.get().incrementHit());
-			return optAddress.get().getUrl();
+			Address address = optAddress.get();
+			address.incrementHit();
+			return addressRepository.save(address).getUrl();
 		}else {
 			return null;
 		}		
