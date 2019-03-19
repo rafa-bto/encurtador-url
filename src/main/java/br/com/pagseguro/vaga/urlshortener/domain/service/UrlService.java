@@ -20,8 +20,17 @@ public class UrlService {
 	}
 
 	public String getUrl(String id) {
-		Optional<Address> address = addressRepository.findById(id);
-		return address.isPresent() ? address.get().getUrl() : null;
+		Optional<Address> optAddress = addressRepository.findById(id);
+		if(optAddress.isPresent()) {
+			addressRepository.save(optAddress.get().incrementHit());
+			return optAddress.get().getUrl();
+		}else {
+			return null;
+		}		
 	}
-
+	
+	public Address getAddress(String id) {
+		Optional<Address> optAddress =  addressRepository.findById(id);
+		return optAddress.isPresent() ? optAddress.get() : null;
+	}
 }

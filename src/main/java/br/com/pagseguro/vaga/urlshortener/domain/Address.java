@@ -9,6 +9,7 @@ public class Address {
 	@Id
 	String id;	
 	String url;
+	Long hitCount = 0L;
 	
 	public Address() {}
 	
@@ -27,5 +28,17 @@ public class Address {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public Long getHitCount() {
+		return hitCount;
+	}
+
+	public void setHitCount(Long hitCount) {
+		this.hitCount = hitCount;
+	}
 	
+	public Address incrementHit() {
+		this.hitCount++;
+		return this;
+	}
 }
