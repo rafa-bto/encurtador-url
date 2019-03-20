@@ -48,7 +48,7 @@ public class UrlShortenerController {
 		if(address != null)
 			return address;
 		else
-			throw new ResourceNotFoundException("Endereço não encontrada");
+			throw new ResourceNotFoundException("Página não encontrada");
 	}
 
 }
