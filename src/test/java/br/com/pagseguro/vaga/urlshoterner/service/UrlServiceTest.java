@@ -3,6 +3,7 @@ package br.com.pagseguro.vaga.urlshoterner.service;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -41,7 +42,7 @@ public class UrlServiceTest {
 	
 	@Test
 	public void getUrlTest() {
-		Optional<Address> address = Optional.of(new Address("www.teste.com.br"));
+		Optional<Address> address = Optional.of(new Address("www.teste.com.br", BigInteger.valueOf(1)));
 		when(addressRepository.findById("123teste123")).thenReturn(address);
 		String ret = urlService.getUrl("123teste123");
 		assertEquals(ret, "http://www.teste.com.br");

@@ -30,25 +30,19 @@ public class UrlShortenerController {
 	}
 	
 	@GetMapping(value = "/url/{id}")
-	public RedirectView getUrl(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {
-		
-		String url = urlService.getUrl(id);
-		
+	public RedirectView getUrl(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {		
+		String url = urlService.getUrl(id);		
 		if(url != null)
 			return new RedirectView(url);
-		else
-			throw new ResourceNotFoundException("Página não encontrada");
+		throw new ResourceNotFoundException("Página não encontrada");
 	}
 	
 	@GetMapping(value = "/address/{id}")
-	public Address getHitCount(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {
-		
-		Address address = urlService.getAddress(id);
-		
+	public Address getHitCount(@PathVariable("id") String id) throws IOException, ResourceNotFoundException {		
+		Address address = urlService.getAddress(id);		
 		if(address != null)
-			return address;
-		else
-			throw new ResourceNotFoundException("Endereço não encontrada");
+			return address;		
+		throw new ResourceNotFoundException("Página não encontrada");
 	}
 
 }
