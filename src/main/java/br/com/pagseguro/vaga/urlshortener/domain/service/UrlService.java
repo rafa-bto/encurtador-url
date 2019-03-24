@@ -1,7 +1,6 @@
 package br.com.pagseguro.vaga.urlshortener.domain.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,11 @@ public class UrlService {
 	}
 	
 	public Address getAddress(String id) {
-		Optional<Address> optAddress =  addressRepository.findById(id);
-		return optAddress.isPresent() ? optAddress.get() : null;
+		List<Address> Addresses = addressRepository.findByAddressNumber((addressUtils.decodeHash(id)));		
+		if(!Addresses.isEmpty()) {
+			Address address = Addresses.get(0);
+			return address;
+		}
+		return null;
 	}
 }

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.pagseguro.vaga.urlshortener.controller.UrlShortenerController;
 import br.com.pagseguro.vaga.urlshortener.controller.DTO.AddressDto;
+import br.com.pagseguro.vaga.urlshortener.domain.Address;
 import br.com.pagseguro.vaga.urlshortener.domain.service.UrlService;
 
 public class UrlShortenerControllerTest {
@@ -59,6 +60,18 @@ public class UrlShortenerControllerTest {
 	@Test(expected=ResourceNotFoundException.class)
 	public void buscaUrlInexistenteTest() throws ResourceNotFoundException, IOException {
 		controller.getUrl("123teste123");
+	}
+	
+	@Test
+	public void getHitCountTest() {
+		Address address = new Address();
+		when(urlService.getAddress("123teste123")).thenReturn(address);
+		try {
+			Address ret = controller.getHitCount("123teste123");
+			assertEquals(ret, address);
+		} catch (IOException e) {
+			fail("ocorreu erro ao obter o Endereço");
+		}		
 	}
 
 }
